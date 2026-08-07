@@ -1,17 +1,11 @@
 #!/bin/bash
-
-echo "=== מתחיל תהליך שחזור נתונים ==="
-
-# משיכת הגיבוי האחרון מה-Repository ב-Git
-echo "[1/3] Pulling latest backup from Git..."
-git pull
-
-# שחזור בסיס הנתונים של Postgres מתוך קובץ הגיבוי
+echo "=== Starting Automatic Restore Process ==="
+echo "[1/3] Setting up Docker containers and network..."
+chmod +x setup.sh
+./setup.sh
+echo "Waiting 10 seconds for PostgreSQL to initialize..."
+sleep 10
 echo "[2/3] Restoring PostgreSQL database..."
-docker exec -i postgres-db psql -U root -d drupal_db < drupal_db_backup.sql
-
-# אתחול מחדש לקונטיינר של דרופל כדי להחיל את השינויים
-echo "[3/3] Restarting Drupal container..."
-docker restart drupal-app
-
-echo "=== השחזור בוצע בהצלחה! ==="
+docker cp drupal_db_backup.sql postgres-db:/drupal_db_backup.sql
+docker exec postgres-db psql -U postgres -d postgres -f /drupal_db_backup.sql
+echo "=== Restore Completed Successfully! ==="
