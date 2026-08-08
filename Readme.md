@@ -56,8 +56,8 @@
 ### שלב 1: משיכת קוד הפרויקט (Clone / Pull)
 פתחו את הטרמינל במחשב/VS Code ומשכו את הקוד ממאגר ה-Git:
 ```bash
-git clone <URL_OF_YOUR_REPOSITORY>
-cd <REPOSITORY_FOLDER>
+git clone https://github.com/Afeka-DevTools/drupal-course-project-Michal-Mariana-Areen
+cd drupal-course-project-Michal-Mariana-Areen
 ```
 
 ### שלב 2: הרצת תהליך השחזור וההקמה האוטומטי
