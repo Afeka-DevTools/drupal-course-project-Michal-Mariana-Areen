@@ -38,7 +38,7 @@
 ### שלב 1: משיכת קוד הפרויקט (Clone / Pull)
 פתחו את הטרמינל במחשב / VS Code ומשכו את הקוד ממאגר ה-Git:
 ```bash
-git clone [https://github.com/Afeka-DevTools/drupal-course-project-Michal-Mariana-Areen](https://github.com/Afeka-DevTools/drupal-course-project-Michal-Mariana-Areen)
+git clone https://github.com/Afeka-DevTools/drupal-course-project-Michal-Mariana-Areen
 cd drupal-course-project-Michal-Mariana-Areen
 ```
 
