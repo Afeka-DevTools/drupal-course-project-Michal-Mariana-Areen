@@ -2,7 +2,6 @@
 -- PostgreSQL database dump
 --
 
-\restrict rqlytP2Y5PY7nADMJ7qL6HJrm5UGawG3z1oNQPXKCiOVqGXNZHhk5riNJMzQ6Rz
 
 -- Dumped from database version 18.4 (Debian 18.4-1.pgdg13+1)
 -- Dumped by pg_dump version 18.4 (Debian 18.4-1.pgdg13+1)
