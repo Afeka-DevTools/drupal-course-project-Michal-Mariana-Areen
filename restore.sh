@@ -12,7 +12,7 @@ echo "[2/4] Restoring PostgreSQL database..."
 docker cp drupal_db_backup.sql postgres-db:/drupal_db_backup.sql
 docker exec postgres-db psql -U postgres -d postgres -f /drupal_db_backup.sql
 
-echo "[3/4] Restoring Drupal Volumes (Design and Files)..."
-docker exec -i drupal-app tar -xzf - -C /opt/drupal/web/sites < drupal_volumes_backup.tar.gz
+echo "[3/4] Restoring Drupal Volumes (Design and Files - FIXED PATH)..."
+docker exec -i drupal-app tar -xzf - -C /opt/drupal/web < drupal_volumes_backup.tar.gz
 
 echo "=== Restore Completed Successfully! ==="
