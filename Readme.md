@@ -40,13 +40,6 @@
 * **Git & GitHub:** לניהול גרסאות, שמירת הקבצים והגשת הפרויקט.
 
 ---
-### ⚙️ הכנות מקדימות (חשוב למי שמשתמש ב-WSL)
-לפני הרצת הפרויקט, יש לוודא שה-Docker Desktop מוגדר לעבוד עם סביבת Ubuntu:
-1. פתח את **Docker Desktop**.
-2. היכנס להגדרות (סמל גלגל השיניים ⚙️) -> **Resources** -> ואז **WSL integration**.
-3. ודא שהאפשרות `Enable integration with my default WSL distro` מסומנת ב-V.
-4. תחת `Enable integration with additional distros:`, הפעל את המתג שליד **Ubuntu**.
-5. לחץ על **Apply & restart** (או Close) כדי לשמור.
 ## 📖 מדריך Step-By-Step למשתמש
 
 ### ⚙️ הכנות מקדימות (חשוב למי שמשתמש ב-WSL)
