@@ -47,7 +47,7 @@
 ### שלב 1: שכפול המאגר (Clone)
 פתח את הטרמינל, נווט לתיקייה בה תרצה לשמור את הפרויקט והרץ:
 ```bash
-git clone [https://github.com/michalgabovich1-boop/drupal-course-project-Michal-Mariana-Areen.git](https://github.com/michalgabovich1-boop/drupal-course-project-Michal-Mariana-Areen.git)
+git clone https://github.com/michalgabovich1-boop/drupal-course-project-Michal-Mariana-Areen.git
 cd drupal-course-project-Michal-Mariana-Areen
 ```
 
