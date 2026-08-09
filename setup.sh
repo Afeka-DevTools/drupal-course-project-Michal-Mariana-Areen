@@ -7,5 +7,5 @@ docker run -d --name drupal-db --network drupal-net -p 3306:3306 -e MYSQL_ROOT_P
 
 echo "Starting Drupal container..."
 docker run -d --name my-drupal --network drupal-net -p 8080:80 drupal:latest
-
+docker cp ./sites/default/settings.php my-drupal:/opt/drupal/web/sites/default/settings.php
 echo "Setup complete! Drupal is available at http://localhost:8080"
