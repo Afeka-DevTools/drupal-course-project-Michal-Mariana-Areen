@@ -40,25 +40,29 @@
 * **Git & GitHub:** לניהול גרסאות, שמירת הקבצים והגשת הפרויקט.
 
 ---
+
 ## 📖 מדריך Step-By-Step למשתמש
 
 ### ⚙️ הכנות מקדימות (חשוב למי שמשתמש ב-WSL)
-לפני הרצת הפרויקט, יש לוודא שה-Docker Desktop מוגדר לעבוד עם סביבת Ubuntu:
-1. פתח את **Docker Desktop**.
-2. היכנס להגדרות (סמל גלגל השיניים ⚙️) -> **Resources** -> ואז **WSL integration**.
-3. ודא שהאפשרות `Enable integration with my default WSL distro` מסומנת ב-V.
-4. תחת `Enable integration with additional distros:`, הפעל את המתג שליד **Ubuntu**.
-5. לחץ על **Apply & restart** (או Close) כדי לשמור.
+1. **הגדרת Docker Desktop:**
+   * פתח את **Docker Desktop**.
+   * היכנס להגדרות (סמל גלגל השיניים ⚙️) -> **Resources** -> **WSL integration**.
+   * ודא שהאפשרות `Enable integration with my default WSL distro` מסומנת ב-V.
+   * תחת `Enable integration with additional distros:`, הפעל את המתג שליד **Ubuntu**.
+   * לחץ על **Apply & restart** (או Close) כדי לשמור.
+
 2. **ניקוי קונטיינרים ישנים (רענון סביבה):**
    אם ישנם קונטיינרים פתוחים מריצה קודמת, הרץ בטרמינל את הפקודה הבאה לניקוי לפני ההתחלה:
    ```bash
    docker stop my-drupal drupal-db
    docker rm my-drupal drupal-db
    docker network rm drupal-net
+   ```
+
 ### שלב 1: שכפול המאגר (Clone)
 פתח את הטרמינל, נווט לתיקייה בה תרצה לשמור את הפרויקט והרץ:
 ```bash
-git clone https://github.com/Afeka-DevTools/drupal-course-project-Michal-Mariana-Areen.git
+git clone [https://github.com/Afeka-DevTools/drupal-course-project-Michal-Mariana-Areen.git](https://github.com/Afeka-DevTools/drupal-course-project-Michal-Mariana-Areen.git)
 cd drupal-course-project-Michal-Mariana-Areen
 ```
 
@@ -67,18 +71,23 @@ cd drupal-course-project-Michal-Mariana-Areen
 ```bash
 bash setup.sh
 ```
-*⚠️ המתן כ-10 שניות כדי לאפשר ל-MySQL לסיים את תהליך האתחול הפנימי שלו לפני המעבר לשלב הבא.*
+*⚠️ **דגש חשוב:** המתן כ-10-15 שניות לאחר הרצת הסקריפט כדי לאפשר לקונטיינר ה-MySQL לסיים את תהליך ה-Initialization הפנימי שלו ברקע.*
 
 ### שלב 3: שחזור בסיס הנתונים (Restore)
-כדי לייבא את כל המידע שהכנו מראש (ההגדרות, המשתמשים והתוכן), הרץ את פקודת השחזור. סקריפט זה לוקח את הקובץ `my-drupal.backup.sql` ומזריק אותו ישירות לתוך קונטיינר ה-MySQL:
+כדי לייבא את כל המידע שהכנו מראש (ההגדרות, המשתמשים והתוכן), הרץ את פקודת השחזור:
 ```bash
 bash restore.sh
 ```
+*(אם מתקבלת הודעת `ERROR 2002: Can't connect to local MySQL server`, מדובר באינדיקציה שה-MySQL עדיין עולה ברקע. המתן 5 שניות והרץ שוב `bash restore.sh`).*
 
 ### שלב 4: פתיחת האתר
-פתח את הדפדפן שלך וגלוש לכתובת:
+פתח את הדפדפן וגלוש לכתובת:
 `http://localhost:8080`
-האתר יעלה כשהוא מוגדר, מוכן ומשוחזר במלואו ללא צורך בשום התקנה ידנית
+
+*⚠️ **שימו לב חשוב לרענון האתר:** אל תלחצו על כפתור הרענון (הגלגל 🔄) בדפדפן, מכיוון שזה פשוט ירענן את ה-URL הישן עם אשף ההתקנה (`/core/install.php`). יש למחוק ידנית את ה-URL בשורת הכתובות, לכתוב מחדש `http://localhost:8080` וללחוץ Enter.*
+
+---
+
 ## 🔧 פתרון תקלות נפוצות
 
 * **האתר מציג "The website encountered an unexpected error":**
@@ -87,37 +96,32 @@ bash restore.sh
   docker exec -it my-drupal vendor/bin/drush cr
   ```
 
-* **האתר פותח את אשף ההתקנה מחדש (`/core/install.php`):**
-  שגיאה זו מצביעה על כך שפקודת ה-`restore.sh` הורצה מוקדם מדי לפני ש-MySQL היה מוכן. יש להריץ שוב `bash restore.sh` ולרענן את העמוד בכתובת הראשית `http://localhost:8080`.
+* **האתר עדיין תקוע על אשף ההתקנה (`/core/install.php`):**
+  1. לחצן הרענון (הגלגל) בדפדפן משאיר את הכתובת הישנה. **מחק את כל הנתיב משורת הכתובות**, קלד מחדש בדיוק `http://localhost:8080` ולחץ Enter.
+  2. אם זה עדיין מופיע, כנראה שפקודת ה-`restore.sh` הורצה מוקדם מדי לפני ש-MySQL סיים לעלות. הרץ שוב `bash restore.sh` וגלוש מחדש לכתובת הנקייה.
 
----!
+---
 
-### 🔧 שלב 5: פתרון תקלות וניקוי מטמון (Drush Cache Rebuild) - אופציונלי
-אם לאחר השחזור האתר מציג שגיאה כגון "The website encountered an unexpected error", ייתכן שמערכת Drupal צריכה לרענן את קבצי המטמון (Cache) שלה בגלל שחזור הנתונים. הרץ את הפקודה הבאה בטרמינל כדי לנקות את המטמון:
-```bash
-docker exec -it my-drupal vendor/bin/drush cr
-```
-לאחר סיום הפקודה, רענן את העמוד בדפדפן.
+## 🛠️ פקודות נוספות
 
-### שלב 6: גיבוי נתונים חדשים (Backup) - אופציונלי
+### גיבוי נתונים חדשים (Backup) - אופציונלי
 אם הוספת תוכן חדש לאתר ואתה מעוניין לשמור אותו, הרץ את הסקריפט הבא. הוא יידרוס את קובץ הגיבוי הקיים בתיקייה וישמור את הנתונים העדכניים:
 ```bash
 bash backup.sh
 ```
 
-### שלב 7: ניקוי סביבת העבודה (Cleanup)
+### ניקוי סביבת העבודה (Cleanup)
 בסיום העבודה, כדי לא להשאיר קבצי זבל או קונטיינרים רצים על המכונה, הרץ את פקודת הניקוי. סקריפט זה יעצור וימחק את הקונטיינרים ואת הרשת הוירטואלית:
 ```bash
 bash cleanup.sh
 ```
-לאחר מכן, סביבת ה-Docker שלך נקייה לחלוטין משאריות הפרויקט.
 
 ---
 
 ## 📌 מידע נוסף למשתמש
 
 ### 🔑 פרטי התחברות לבדיקת המערכת (Login Credentials)
-כדי להתחבר לממשק הניהול של Drupal ולצפות בהרשאות המשתמשים ובתוכן שיצרנו, תוכל להשתמש בפרטים הבאים:
+כדי להתחבר לממשק הניהול של Drupal ולצפות בהרשאות המשתמשים ובתוכן שיצרנו:
 * **שם משתמש (Username):** `Michal` (או `demoadmin`)
 * **סיסמה (Password):** `Michal123`
 
@@ -128,8 +132,3 @@ bash cleanup.sh
 * **Database Name:** `drupaldb`
 * **Database User:** `drupaluser`
 * **MySQL Root Password:** `my-secret-pw`
-
-### 💡 הערות פיתוח
-* **הגדרות בסיס נתונים שקופות:** קובץ ההגדרות `settings.php` מועתק אוטומטית לקונטיינר ה-Drupal בשלב ה-Setup. קובץ זה מכיל את סיסמאות ה-DB מראש, מה שמאפשר לאתר לדלג על מסך ההתקנה של Drupal ולגשת לנתונים המשוחזרים מיד.
-* **טיפול בשגיאות גיבוי:** במהלך פיתוח הפרויקט נתקלנו בשגיאת `GTID_PURGED` בעת ביצוע dump ממסד נתונים פעיל שמשתמש בטרנזקציות. הפתרון שיישמנו בסקריפט הגיבוי הוא הוספת הדגל `--set-gtid-purged=OFF` שמבטיח יצירת קובץ SQL נקי שניתן לשחזר ללא התנגשויות סינכרון.
-* **נתיבי קבצים (Paths):** שים לב שסקריפט ה-Restore קורא מקובץ הגיבוי שנמצא באותה ספרייה בה מורץ הסקריפט. יש לוודא שאתה תמיד מריץ את הפקודות מתוך תיקיית השורש של הפרויקט.
