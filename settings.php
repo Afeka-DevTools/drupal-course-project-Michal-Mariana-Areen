@@ -11,9 +11,9 @@ $settings['entity_update_backup'] = TRUE;
 $settings['migrate_node_migrate_type_default'] = 'idle';
 
 $databases['default']['default'] = array (
-  'database' => 'drupal',
-  'username' => 'drupal',
-  'password' => 'drupal',
+  'database' => 'drupaldb',
+  'username' => 'drupaluser',
+  'password' => 'my-secret-pw',
   'host' => 'drupal-db',
   'port' => '3306',
   'driver' => 'mysql',
