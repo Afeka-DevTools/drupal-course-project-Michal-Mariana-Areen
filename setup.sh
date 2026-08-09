@@ -3,8 +3,7 @@ echo "Creating docker network..."
 docker network create drupal-net
 
 echo "Starting MySQL container..."
-docker run -d --name drupal-db --network drupal-net -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_DATABASE=drupaldb -e MYSQL_USER=drupaluser -e MYSQL_PASSWORD=drupalpass mysql:latest
-
+docker run -d --name drupal-db --network drupal-net -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_DATABASE=drupaldb -e MYSQL_USER=drupaluser -e MYSQL_PASSWORD=my-secret-pw mysql:8.0
 echo "Starting Drupal container..."
 docker run -d --name my-drupal --network drupal-net -p 8080:80 drupal:latest
 docker cp ./settings.php my-drupal:/opt/drupal/web/sites/default/settings.php
