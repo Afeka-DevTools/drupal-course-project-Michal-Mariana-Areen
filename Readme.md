@@ -49,7 +49,12 @@
 3. ודא שהאפשרות `Enable integration with my default WSL distro` מסומנת ב-V.
 4. תחת `Enable integration with additional distros:`, הפעל את המתג שליד **Ubuntu**.
 5. לחץ על **Apply & restart** (או Close) כדי לשמור.
-
+2. **ניקוי קונטיינרים ישנים (רענון סביבה):**
+   אם ישנם קונטיינרים פתוחים מריצה קודמת, הרץ בטרמינל את הפקודה הבאה לניקוי לפני ההתחלה:
+   ```bash
+   docker stop my-drupal drupal-db
+   docker rm my-drupal drupal-db
+   docker network rm drupal-net
 ### שלב 1: שכפול המאגר (Clone)
 פתח את הטרמינל, נווט לתיקייה בה תרצה לשמור את הפרויקט והרץ:
 ```bash
