@@ -18,3 +18,11 @@ $databases['default']['default'] = array (
   'port' => '3306',
   'driver' => 'mysql',
 );
+$databases['default']['default'] = array (
+  'database' => 'drupal',
+  'username' => 'drupal',
+  'password' => 'drupal',
+  'host' => 'drupal-db',
+  'port' => '3306',
+  'driver' => 'mysql',
+);
